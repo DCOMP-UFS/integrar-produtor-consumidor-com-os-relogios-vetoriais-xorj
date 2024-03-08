@@ -1,8 +1,8 @@
 /*
- * Compilação: mpicc -o produtor-consumidor-com-os-relogios produtor-consumidor-com-os-relogios.c  -lpthread -lrt
- * Execução:   mpiexec -n 3 ./produtor-consumidor-com-os-relogios
+ * CompilaÃ§Ã£o: mpicc -o produtor-consumidor-com-os-relogios produtor-consumidor-com-os-relogios.c  -lpthread -lrt
+ * ExecuÃ§Ã£o:   mpiexec -n 3 ./produtor-consumidor-com-os-relogios
  * ## Integrantes
- * Jorge Vinícius Lourenço Santos
+ * Jorge VinÃ­cius LourenÃ§o Santos
  * Matheus de Farias Santos
  * Adailton Moura da Silva
  */
@@ -67,7 +67,7 @@ void enviarMensagem(int remetente, int destinatario)
     Mensagem *msg = (Mensagem *)malloc(sizeof(Mensagem));
     if (msg == NULL)
     {
-        perror("Erro ao alocar memória para mensagem");
+        perror("Erro ao alocar memï¿½ria para mensagem");
         exit(EXIT_FAILURE);
     }
 
@@ -102,7 +102,7 @@ void enviarMensagemSaida()
     valoresRelogio = calloc(3, sizeof(int));
     if (valoresRelogio == NULL)
     {
-        perror("Erro ao alocar memória para valores do relógio");
+        perror("Erro ao alocar memï¿½ria para valores do relï¿½gio");
         exit(EXIT_FAILURE);
     }
 
@@ -125,14 +125,14 @@ void receberMensagemEntrada()
     valoresRelogio = calloc(3, sizeof(int));
     if (valoresRelogio == NULL)
     {
-        perror("Erro ao alocar memória para valores do relógio");
+        perror("Erro ao alocar memï¿½ria para valores do relï¿½gio");
         exit(EXIT_FAILURE);
     }
 
     RelogioProcesso *relogio = (RelogioProcesso *)malloc(sizeof(RelogioProcesso));
     if (relogio == NULL)
     {
-        perror("Erro ao alocar memória para relógio");
+        perror("Erro ao alocar memï¿½ria para relï¿½gio");
         exit(EXIT_FAILURE);
     }
 
