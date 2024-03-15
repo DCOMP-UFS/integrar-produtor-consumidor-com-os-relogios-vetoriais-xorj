@@ -65,12 +65,7 @@ void enviarMensagem(int remetente, int destinatario)
     }
 
     Mensagem *msg = (Mensagem *)malloc(sizeof(Mensagem));
-    if (msg == NULL)
-    {
-        perror("Erro ao alocar mem�ria para mensagem");
-        exit(EXIT_FAILURE);
-    }
-
+    
     msg->relogio = relogioGlobal;
     msg->origem = remetente;
     msg->destino = destinatario;
@@ -100,11 +95,6 @@ void enviarMensagemSaida()
 
     int *valoresRelogio;
     valoresRelogio = calloc(3, sizeof(int));
-    if (valoresRelogio == NULL)
-    {
-        perror("Erro ao alocar mem�ria para valores do rel�gio");
-        exit(EXIT_FAILURE);
-    }
 
     for (int i = 0; i < 3; i++)
     {
@@ -123,19 +113,8 @@ void receberMensagemEntrada()
 {
     int *valoresRelogio;
     valoresRelogio = calloc(3, sizeof(int));
-    if (valoresRelogio == NULL)
-    {
-        perror("Erro ao alocar mem�ria para valores do rel�gio");
-        exit(EXIT_FAILURE);
-    }
 
     RelogioProcesso *relogio = (RelogioProcesso *)malloc(sizeof(RelogioProcesso));
-    if (relogio == NULL)
-    {
-        perror("Erro ao alocar mem�ria para rel�gio");
-        exit(EXIT_FAILURE);
-    }
-
     MPI_Recv(valoresRelogio, 3, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
     for (int i = 0; i < 3; i++)
