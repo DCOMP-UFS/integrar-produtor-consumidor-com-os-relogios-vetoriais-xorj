@@ -244,37 +244,13 @@ void processo(long idProcesso)
     pthread_mutex_init(&mutexFilaEntrada, NULL);
     pthread_mutex_init(&mutexFilaSaida, NULL);
 
-    if (pthread_create(&tRelogioProcesso, NULL, &threadRelogioProcesso, (void *)idProcesso) != 0)
-    {
-        fprintf(stderr, "Erro ao criar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_create(&tRecebimentoMensagem, NULL, &threadRecebimentoMensagem, (void *)idProcesso) != 0)
-    {
-        fprintf(stderr, "Erro ao criar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_create(&tEnvioMensagem, NULL, &threadEnvioMensagem, (void *)idProcesso) != 0)
-    {
-        fprintf(stderr, "Erro ao criar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
+    pthread_create(&tRelogioProcesso, NULL, &threadRelogioProcesso, (void *)idProcesso);
+    pthread_create(&tRecebimentoMensagem, NULL, &threadRecebimentoMensagem, (void *)idProcesso);
+    pthread_create(&tEnvioMensagem, NULL, &threadEnvioMensagem, (void *)idProcesso);
 
-    if (pthread_join(tRelogioProcesso, NULL) != 0)
-    {
-        fprintf(stderr, "Erro ao aguardar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_join(tRecebimentoMensagem, NULL) != 0)
-    {
-        fprintf(stderr, "Erro ao aguardar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
-    if (pthread_join(tEnvioMensagem, NULL) != 0)
-    {
-        fprintf(stderr, "Erro ao aguardar a thread do processo %ld\n", idProcesso);
-        exit(EXIT_FAILURE);
-    }
+    pthread_join(tRelogioProcesso, NULL);
+    pthread_join(tRecebimentoMensagem, NULL);
+    pthread_join(tEnvioMensagem, NULL);
 
     pthread_cond_destroy(&condFilaCheiaEntrada);
     pthread_cond_destroy(&condFilaVaziaEntrada);
